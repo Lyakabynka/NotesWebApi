@@ -3,7 +3,7 @@ using Notes.Application.Common.Mappings;
 using Notes.Application.Notes.Commands.CreateNote;
 using Notes.Domain;
 
-namespace Notes.WebApi.Controllers.Models
+namespace Notes.WebApi.Models
 {
     //creating this class ( because user do not know his UserId, but CreateNoteCommand contains UserId Property )
     public class CreateNoteDto : IMapWith<CreateNoteCommand>

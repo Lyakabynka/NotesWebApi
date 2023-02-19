@@ -1,5 +1,5 @@
 ﻿
-namespace Notes.Application.Notes.Queries.GetNoteLite
+namespace Notes.Application.Notes.Queries.GetNoteList
 {
     public class NoteListVm
     {

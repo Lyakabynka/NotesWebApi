@@ -16,7 +16,9 @@ builder.Services.AddAutoMapper(config=>
     config.AddProfile(new AssemblyMappingProfile(typeof(INotesDbContext).Assembly));
 });
 
-builder.Services.AddPersistence(builder.Configuration).AddApplication();
+builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddApplication();
+builder.Services.AddControllers();
 
 builder.Services.AddCors(options=>
 {
@@ -41,11 +43,11 @@ using (var scope = app.Services.CreateScope())
     }
     catch(Exception ex)
     {
-        //todo
+        //todos
     }
 }
 
-
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
