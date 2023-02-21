@@ -3,6 +3,7 @@ using Notes.Application.Common.Mappings;
 using System.Reflection;
 using Notes.Application.Interfaces;
 using Notes.Application;
+using Notes.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,8 @@ using (var scope = app.Services.CreateScope())
         //todos
     }
 }
+
+app.UseCustomExceptionHandler();
 
 app.UseRouting();
 app.UseHttpsRedirection();
