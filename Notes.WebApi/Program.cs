@@ -4,9 +4,11 @@ using System.Reflection;
 using Notes.Application.Interfaces;
 using Notes.Application;
 using Notes.WebApi.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region //Services
 //For mapping one object into another
 builder.Services.AddAutoMapper(config=>
 {
@@ -30,7 +32,20 @@ builder.Services.AddCors(options=>
         policy.AllowAnyOrigin();
     });
 });
-
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = 
+        JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = 
+    JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options=>
+    {
+        options.Authority = "http://localhost:47755";
+        options.Audience = "NotesWebAPI";
+        options.RequireHttpsMetadata = false;
+    });
+#endregion
 var app = builder.Build();
 
 //for getting DbContext ( cuz its Scoped Service )
@@ -53,6 +68,9 @@ app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
