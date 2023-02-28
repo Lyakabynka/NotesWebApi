@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Notes.Tests.Common
 {
-    public class QueryTestFixture : IDisposable
+    public class TestQueryFixture : IDisposable
     {
         public NotesDbContext Context;
         public IMapper Mapper;
 
-        public QueryTestFixture()
+        public TestQueryFixture()
         {
             Context = NotesContextFactory.Create();
             var configurationProvider = new MapperConfiguration(cfg =>
@@ -32,5 +32,5 @@ namespace Notes.Tests.Common
     }
 
     [CollectionDefinition("QueryCollection")]
-    public class QueryCollection : ICollectionFixture<QueryTestFixture> { }
+    public class QueryCollection : ICollectionFixture<TestQueryFixture> { }
 }

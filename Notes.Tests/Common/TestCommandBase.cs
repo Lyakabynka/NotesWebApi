@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Notes.Tests.Common
 {
-    public class TestCommandBase : IDisposable
+    public abstract class TestCommandBase : IDisposable
     {
         protected readonly NotesDbContext Context;
 
