@@ -3,12 +3,6 @@ using Notes.Application.Common.Exceptions;
 using Notes.Application.Notes.Commands.CreateNote;
 using Notes.Application.Notes.Commands.DeleteNote;
 using Notes.Tests.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace Notes.Tests.Notes.Commands
 {
@@ -68,6 +62,7 @@ namespace Notes.Tests.Notes.Commands
                     new CreateNoteCommand()
                     {
                         Title = "note title",
+                        Details = "123",
                         UserId = NotesContextFactory.UserAId,
                     },
                     CancellationToken.None

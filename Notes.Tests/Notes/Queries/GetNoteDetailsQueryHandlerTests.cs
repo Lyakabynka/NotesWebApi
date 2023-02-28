@@ -3,14 +3,10 @@ using Notes.Application.Notes.Queries.GetNoteDetails;
 using Notes.Persistence;
 using Notes.Tests.Common;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Notes.Tests.Notes.Queries
 {
+    [Collection("QueryCollection")]
     public class GetNoteDetailsQueryHandlerTests
     {
         private readonly NotesDbContext Context;
