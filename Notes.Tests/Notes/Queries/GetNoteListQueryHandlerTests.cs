@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Notes.Tests.Notes.Queries
 {
+    [Collection("QueryCollection")]
     public class GetNoteListQueryHandlerTests
     {
         private readonly NotesDbContext Context;
@@ -25,7 +26,7 @@ namespace Notes.Tests.Notes.Queries
         public async Task GetNoteListQueryHandler_Success()
         {
             //Arrange
-            var handler = new GetNoteListQueryHandler(Context,Mapper);
+            var handler = new GetNoteListQueryHandler(Context, Mapper);
             //Act
             var result = await handler.Handle(
                     new GetNoteListQuery()
@@ -37,6 +38,25 @@ namespace Notes.Tests.Notes.Queries
             //Assert
             result.ShouldBeOfType<NoteListVm>();
             result.Notes.Count.ShouldBe(2);
+        }
+
+        [Fact]
+        public async Task GetNoteListQueryHandler_FailOnWrongUserId()
+        {
+            //Arrange
+            var handler = new GetNoteListQueryHandler(Context, Mapper);
+            //Act
+            var result = await handler.Handle(
+                    new GetNoteListQuery()
+                    {
+                        UserId = Guid.NewGuid(),
+                    },
+                    CancellationToken.None
+                );
+
+
+            //Assert
+            result.Notes.Count.ShouldBe(0);
         }
     }
 }
