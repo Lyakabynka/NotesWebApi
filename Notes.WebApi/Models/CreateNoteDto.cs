@@ -2,12 +2,14 @@
 using Notes.Application.Common.Mappings;
 using Notes.Application.Notes.Commands.CreateNote;
 using Notes.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace Notes.WebApi.Models
 {
     //creating this class ( because user do not know his UserId, but CreateNoteCommand contains UserId Property )
     public class CreateNoteDto : IMapWith<CreateNoteCommand>
     {
+        [Required]
         public string Title { get; set; }
         public string Details { get; set; }
         public void Mapping(Profile profile)
